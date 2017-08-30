@@ -7,12 +7,12 @@ defmodule RandomStringGeneratorTest do
   end
 
   test "generate a random lower case character" do
-    str = RandomStringGenerator.generate("c")
+    str = RandomStringGenerator.generate("l")
     assert Regex.match?(~r/[a-z]/, str) == true
   end
 
   test "generate a random upper case character" do
-    str = RandomStringGenerator.generate("C")
+    str = RandomStringGenerator.generate("L")
     assert Regex.match?(~r/[A-Z]/, str) == true
   end
 
