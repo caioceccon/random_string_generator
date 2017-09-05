@@ -58,7 +58,7 @@ defmodule RandomStringGenerator do
 
   ## Examples
 
-      iex> str = RandomStringGenerator.generate("c-C-d")
+      iex> str = RandomStringGenerator.generate("l-L-d")
       iex> Regex.match?(~r/[a-z]-[A-Z]-[0-9]/, str)
       true
 
