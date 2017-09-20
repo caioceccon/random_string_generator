@@ -50,9 +50,6 @@ defmodule RandomStringGenerator do
     "}", "~"
   ]
 
-  # TODO accept list of chars to be used as special case
-  # TODO implement pattern repetition like d{1}
-
   @doc """
   Given a `pattern` string, returns a random generated string.
 

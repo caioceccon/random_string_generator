@@ -1,16 +1,17 @@
 defmodule RandomStringGenerator.Mixfile do
   use Mix.Project
+  @version "0.1.1"
 
   def project do
     [
       app: :random_string_generator,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps(),
       description: description(),
       package: package(),
-      source_url: "https://github.com/caioceccon/random_string_generator/",
+      docs: docs()
     ]
   end
 
@@ -42,6 +43,15 @@ defmodule RandomStringGenerator.Mixfile do
       maintainers: ["Caio Ceccon"],
       licenses: ["GNU General Public License v3.0"],
       links: %{"GitHub" => "https://github.com/caioceccon/random_string_generator"}
+    ]
+  end
+
+  defp docs do
+    [
+      source_ref: "v#{@version}",
+      extras: ["README.md"],
+      main: "readme",
+      source_url: "https://github.com/caioceccon/random_string_generator/",
     ]
   end
 end
