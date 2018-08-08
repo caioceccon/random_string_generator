@@ -1,5 +1,7 @@
 # RandomStringGenerator
 
+[![Build Status](https://travis-ci.org/caioceccon/random_string_generator.svg?branch=master)](https://travis-ci.org/caioceccon/random_string_generator) [![codecov](https://codecov.io/gh/caioceccon/random_string_generator/branch/master/graph/badge.svg)](https://codecov.io/gh/caioceccon/random_string_generator)
+
 **A module to generate a random string based on a given string pattern**
 
 ## Installation
