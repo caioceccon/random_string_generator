@@ -89,10 +89,12 @@ defmodule RandomStringGenerator do
       true
 
   """
+  @spec generate(String.t()) :: String.t()
   def generate(pattern) do
     generate(pattern, "")
   end
 
+  @spec generate(String.t(), String.t()) :: String.t()
   defp generate("", generated_string) do
     generated_string
   end
