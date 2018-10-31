@@ -45,9 +45,38 @@ defmodule RandomStringGenerator do
   @upper_alpha_chars ~w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
   @digits ~w(0 1 2 3 4 5 6 7 8 9)
   @punctuation [
-    "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/",
-    ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|",
-    "}", "~"
+    "!",
+    "\"",
+    "#",
+    "$",
+    "%",
+    "&",
+    "'",
+    "(",
+    ")",
+    "*",
+    "+",
+    ",",
+    "-",
+    ".",
+    "/",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "?",
+    "@",
+    "[",
+    "\\",
+    "]",
+    "^",
+    "_",
+    "`",
+    "{",
+    "|",
+    "}",
+    "~"
   ]
 
   @doc """
@@ -60,10 +89,12 @@ defmodule RandomStringGenerator do
       true
 
   """
+  @spec generate(String.t()) :: String.t()
   def generate(pattern) do
     generate(pattern, "")
   end
 
+  @spec generate(String.t(), String.t()) :: String.t()
   defp generate("", generated_string) do
     generated_string
   end
@@ -85,11 +116,11 @@ defmodule RandomStringGenerator do
     generate(rest, generated_string <> Enum.random(@punctuation))
   end
 
-  defp generate("\\" <> <<pattern :: binary-size(1)>> <> rest, generated_string) do
+  defp generate("\\" <> <<pattern::binary-size(1)>> <> rest, generated_string) do
     generate(rest, generated_string <> pattern)
   end
 
-  defp generate(<<pattern :: binary-size(1)>> <> rest, generated_string) do
+  defp generate(<<pattern::binary-size(1)>> <> rest, generated_string) do
     generate(rest, generated_string <> pattern)
   end
 end
