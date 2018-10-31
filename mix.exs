@@ -7,11 +7,11 @@ defmodule RandomStringGenerator.Mixfile do
       app: :random_string_generator,
       version: @version,
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        "coveralls": :test,
+        coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
@@ -59,7 +59,7 @@ defmodule RandomStringGenerator.Mixfile do
       source_ref: "v#{@version}",
       extras: ["README.md"],
       main: "readme",
-      source_url: "https://github.com/caioceccon/random_string_generator/",
+      source_url: "https://github.com/caioceccon/random_string_generator/"
     ]
   end
 end
