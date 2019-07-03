@@ -67,12 +67,24 @@ iex> RandomStringGenerator.generate("ll-")
 **Scape**
 
   In order to generate a string containing the characters `l`,`L`,`d` and `p`
-  as a delimiter you need to use the backslash twice in order to scape it.
+  as a delimiter, you need to use the backslash twice in order to scape it.
 
 ##### Generate a string containing 2 digits followed by the letters `lLdp`.
 ```elixir
 iex> RandomStringGenerator.generate("dd\\l\\L\\d\\p")
 "39lLdp"
+```
+
+**Shuffling**
+
+  I order to generate a string based on a given patter `Lldd` where those
+  characters are placed in a random order, the `shuffle/1` function should
+  be used.
+
+##### Generate a string containing 2 lower case letters, 2 digits in random order.
+```elixir
+iex> RandomStringGenerator.generate("Lldd") |> RandomStringGenerator.shuffle()
+"s22E"
 ```
 
 Full documentation at [https://hexdocs.pm/random_string_generator](https://hexdocs.pm/random_string_generator).

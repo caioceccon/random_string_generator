@@ -40,11 +40,16 @@ defmodule RandomStringGenerator do
       RandomStringGenerator.generate("dd\\\\l\\\\L\\\\d\\\\p")
 
   """
+  @lower_letter "l"
+  @upper_letter "L"
+  @digit "d"
+  @punctuation "p"
+  @scape "\\"
 
   @lower_alpha_chars ~w(a b c d e f g h i j k l m n o p q r s t u v w x y z)
   @upper_alpha_chars ~w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
   @digits ~w(0 1 2 3 4 5 6 7 8 9)
-  @punctuation [
+  @punctuations [
     "!",
     "\"",
     "#",
@@ -79,6 +84,8 @@ defmodule RandomStringGenerator do
     "~"
   ]
 
+
+
   @doc """
   Given a `pattern` string, returns a random generated string.
 
@@ -90,8 +97,30 @@ defmodule RandomStringGenerator do
 
   """
   @spec generate(String.t()) :: String.t()
-  def generate(pattern) do
+  def generate(pattern) when is_binary(pattern) do
     generate(pattern, "")
+  end
+
+  @doc """
+  Given a `pattern` string it shuffles it to a random order, so that it can be
+  used for the case where the string must contain certain characters but must
+  be generated in random order.
+
+  ## Examples
+
+      iex> pattern = "lLdp-"
+      iex> shuffled_pattern = RandomStringGenerator.shuffle(pattern)
+      iex>  String.graphemes(pattern) |> Enum.sort ==
+      iex>  String.graphemes(shuffled_pattern) |> Enum.sort
+      true
+
+  """
+  @spec shuffle(String.t()) :: String.t()
+  def shuffle(pattern) when is_binary(pattern) do
+    pattern
+    |> String.graphemes()
+    |> Enum.shuffle()
+    |> Enum.join()
   end
 
   @spec generate(String.t(), String.t()) :: String.t()
@@ -100,23 +129,23 @@ defmodule RandomStringGenerator do
   end
 
   # TODO Dry Enum.random
-  defp generate("l" <> rest, generated_string) do
+  defp generate(@lower_letter <> rest, generated_string) do
     generate(rest, generated_string <> Enum.random(@lower_alpha_chars))
   end
 
-  defp generate("L" <> rest, generated_string) do
+  defp generate(@upper_letter <> rest, generated_string) do
     generate(rest, generated_string <> Enum.random(@upper_alpha_chars))
   end
 
-  defp generate("d" <> rest, generated_string) do
+  defp generate(@digit <> rest, generated_string) do
     generate(rest, generated_string <> Enum.random(@digits))
   end
 
-  defp generate("p" <> rest, generated_string) do
-    generate(rest, generated_string <> Enum.random(@punctuation))
+  defp generate(@punctuation <> rest, generated_string) do
+    generate(rest, generated_string <> Enum.random(@punctuations))
   end
 
-  defp generate("\\" <> <<pattern::binary-size(1)>> <> rest, generated_string) do
+  defp generate(@scape <> <<pattern::binary-size(1)>> <> rest, generated_string) do
     generate(rest, generated_string <> pattern)
   end
 
