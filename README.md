@@ -11,7 +11,7 @@ The package can be installed by adding `random_string_generator` to your list of
 ```elixir
 def deps do
   [
-    {:random_string_generator, "~> 0.1.1"}
+    {:random_string_generator, "~> 1.0.0"}
   ]
 end
 ```
