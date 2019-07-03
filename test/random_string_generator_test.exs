@@ -26,6 +26,12 @@ defmodule RandomStringGeneratorTest do
     assert Regex.match?(~r/[\p{P}\p{S}]/, str) == true
   end
 
+  test "generate a custom char" do
+    custom_list = ["+", "-", "/", "*"]
+    char = RandomStringGenerator.generate("c", custom_list)
+    assert Enum.member?(custom_list, char) == true
+  end
+
   test "accept any delimiter" do
     str = RandomStringGenerator.generate("d-")
     assert Regex.match?(~r/[0-9]-/, str) == true

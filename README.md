@@ -28,6 +28,8 @@ end
 
   Use `p` for punctuation
 
+  Use `c` for custom character
+
 #### Punctuation is any character on the following group:
 
   `!`, `"`, `#`, `$`, `%`, `&`, `'`, `(`, `)`, `*`, `+`, `,`, `-`,
@@ -54,8 +56,8 @@ iex> RandomStringGenerator.generate("pp")
 
 **Delimiters**
 
-  Everything that is not `l`,`L`,`d` and `p` is treated as a delimiter so the
-  pattern `-dl?` is interpreted as a hyphen followed by a digit followed by
+  Everything that is not `l`,`L`,`d`,`p` and `c` is treated as a delimiter so
+  the pattern `-dl?` is interpreted as a hyphen followed by a digit followed by
   a lower case letter followed by a question mark.
 
 ##### Generate a string containing 2 letters followed by a hyphen.
@@ -73,6 +75,26 @@ iex> RandomStringGenerator.generate("ll-")
 ```elixir
 iex> RandomStringGenerator.generate("dd\\l\\L\\d\\p")
 "39lLdp"
+```
+
+**Custom Chars**
+
+  I order to generate a string based on a given custom pattern `ccc` a list
+  of possible values need to be passed as an argument.
+
+##### Generate a string containing 3 custom chars from the list `["+", "-", "/", "*"]`.
+```elixir
+iex> RandomStringGenerator.generate("ccc", ["+", "-", "/", "*"])
+"+/*"
+```
+
+  If no custom char list is passed the with character `c` it will be treated
+  as a **delimiter** as in the example below where it generates a string containing
+  one digit followed by the letter c followed by another digit
+
+```elixir
+iex> RandomStringGenerator.generate("dcd")
+"2c1"
 ```
 
 **Shuffling**
