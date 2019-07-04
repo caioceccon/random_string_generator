@@ -99,7 +99,7 @@ iex> RandomStringGenerator.generate("dcd")
 
 **Shuffling**
 
-  I order to generate a string based on a given patter `Lldd` where those
+  In order to generate a string based on a given patter `Lldd` where those
   characters are placed in a random order, the `shuffle/1` function should
   be used.
 
